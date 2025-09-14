@@ -76,3 +76,53 @@ print(q.full())
 # q.display()          # Queue: [20, 30]
 
 # print("Front element:", q.peek())  # 20
+
+class Queue:
+    def __init__(self):
+        self.queue = []
+
+    # Enqueue
+    def enqueue(self, item):
+        self.queue.append(item)
+        print(f"{item} added to the queue")
+
+    # Dequeue
+    def dequeue(self):
+        if self.is_empty():
+            print("Queue is empty")
+            return None
+        return self.queue.pop(0)
+
+    # Peek / Front
+    def front(self):
+        if self.is_empty():
+            print("Queue is empty")
+            return None
+        return self.queue[0]
+
+    # Check if empty
+    def is_empty(self):
+        return len(self.queue) == 0
+
+    # Size
+    def size(self):
+        return len(self.queue)
+
+    # Display
+    def display(self):
+        print("Queue:", self.queue)
+
+
+# ---------------------------
+# Usage
+q = Queue()
+q.enqueue('A')
+q.enqueue('B')
+q.enqueue('C')
+q.display()
+
+print("Dequeued:", q.dequeue())
+q.display()
+
+print("Front element:", q.front())
+print("Size:", q.size())
