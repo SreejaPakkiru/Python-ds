@@ -21,19 +21,19 @@ print(q)
 
 # Implementation using queue.Queue
 from queue import Queue
-q = Queue(maxsize = 3)
+q1= Queue(maxsize = 3)
 print(q.qsize()) 
-q.put('a')
-q.put('b')
-q.put('c')
-print(q.full()) 
-print(q.get())
-print(q.get())
-print(q.get())
-print(q.empty())
-q.put(1)
-print(q.empty()) 
-print(q.full())
+q1.put('a')
+q1.put('b')
+q1.put('c')
+print(q1.full()) 
+print(q1.get())
+print(q1.get())
+print(q1.get())
+print(q1.empty())
+q1.put(1)
+print(q1.empty()) 
+print(q1.full())
 
 #Queue implementation using Classes
 # class Queue:
@@ -115,14 +115,14 @@ class Queue:
 
 # ---------------------------
 # Usage
-q = Queue()
-q.enqueue('A')
-q.enqueue('B')
-q.enqueue('C')
-q.display()
+q2 = Queue()
+q2.enqueue('A')
+q2.enqueue('B')
+q2.enqueue('C')
+q2.display()
 
-print("Dequeued:", q.dequeue())
-q.display()
+print("Dequeued:", q2.dequeue())
+q2.display()
 
-print("Front element:", q.front())
-print("Size:", q.size())
+print("Front element:", q2.front())
+print("Size:", q2.size())
