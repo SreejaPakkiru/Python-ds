@@ -22,7 +22,7 @@ print(q)
 # Implementation using queue.Queue
 from queue import Queue
 q1= Queue(maxsize = 3)
-print(q.qsize()) 
+print(q1.qsize()) 
 q1.put('a')
 q1.put('b')
 q1.put('c')
@@ -77,52 +77,110 @@ print(q1.full())
 
 # print("Front element:", q.peek())  # 20
 
+# class Queue:
+#     def __init__(self):
+#         self.queue = []
+
+#     # Enqueue
+#     def enqueue(self, item):
+#         self.queue.append(item)
+#         print(f"{item} added to the queue")
+
+#     # Dequeue
+#     def dequeue(self):
+#         if self.is_empty():
+#             print("Queue is empty")
+#             return None
+#         return self.queue.pop(0)
+
+#     # Peek / Front
+#     def front(self):
+#         if self.is_empty():
+#             print("Queue is empty")
+#             return None
+#         return self.queue[0]
+
+#     # Check if empty
+#     def is_empty(self):
+#         return len(self.queue) == 0
+
+#     # Size
+#     def size(self):
+#         return len(self.queue)
+
+#     # Display
+#     def display(self):
+#         print("Queue:", self.queue)
+
+
+# # ---------------------------
+# # Usage
+# q2 = Queue()
+# q2.enqueue('A')
+# q2.enqueue('B')
+# q2.enqueue('C')
+# q2.display()
+
+# print("Dequeued:", q2.dequeue())
+# q2.display()
+
+# print("Front element:", q2.front())
+# print("Size:", q2.size())
+
+#---------using class----------
 class Queue:
-    def __init__(self):
-        self.queue = []
+    def __init__(self, max_size):
+        self.max_size = max_size
+        self.queue = [None] * max_size
+        self.front = -1
+        self.rear = -1
 
-    # Enqueue
-    def enqueue(self, item):
-        self.queue.append(item)
-        print(f"{item} added to the queue")
+    def is_Empty(self):
+        return self.front == -1 or self.front > self.rear
+    
+    def is_Full(self):
+        return self.rear == self.max_size - 1
+    
+    def enqueue(self, data):
+        if self.is_Full():
+            print("Queue is full")
+            return
+        if self.is_Empty():
+            self.front = 0
+        
+        self.rear +=1
+        self.queue[self.rear] = data
 
-    # Dequeue
     def dequeue(self):
-        if self.is_empty():
+        if self.is_Empty():
             print("Queue is empty")
-            return None
-        return self.queue.pop(0)
+            return
+        removed = self.queue[self.front]
+        self.front += 1
 
-    # Peek / Front
-    def front(self):
-        if self.is_empty():
+        if self.front > self.rear:
+            self.front = self.rear = -1
+
+        return removed
+    
+    def dispaly(self):
+        if self.is_Empty():
             print("Queue is empty")
-            return None
-        return self.queue[0]
+            return
+        print("Queue: ", end=" ")
+        for i in range(self.front, self.rear + 1):
+            print(self.queue[i], end=" ")
+        print()
 
-    # Check if empty
-    def is_empty(self):
-        return len(self.queue) == 0
+queueclass = Queue(3)
+queueclass.enqueue('A')
+queueclass.enqueue('B')
+queueclass.enqueue('C')
+queueclass.dispaly()
+queueclass.dequeue()
+queueclass.dispaly()
+queueclass.dequeue()
+queueclass.dequeue()
+queueclass.dispaly()
 
-    # Size
-    def size(self):
-        return len(self.queue)
-
-    # Display
-    def display(self):
-        print("Queue:", self.queue)
-
-
-# ---------------------------
-# Usage
-q2 = Queue()
-q2.enqueue('A')
-q2.enqueue('B')
-q2.enqueue('C')
-q2.display()
-
-print("Dequeued:", q2.dequeue())
-q2.display()
-
-print("Front element:", q2.front())
-print("Size:", q2.size())
+        
