@@ -1,3 +1,5 @@
+from collections import deque
+
 class Node:
     def __init__(self, data):
         self.left = None
@@ -24,6 +26,26 @@ def post_order(node):
     post_order(node.left)
     post_order(node.right)
     print(node.data)
+
+def insert(root, key):
+    if root is None:
+        return Node(key)
+    queue = deque([root])
+    while queue:
+        temp = queue.popleft()
+        if temp.left is None:
+            temp.left = Node(key)
+            break
+        else:
+            queue.append(temp.left)
+        
+        if temp.right is None:
+            temp.right = Node(key)
+            break
+        else:
+            queue.append(temp.right)
+
+    return root
 
 #creating BT with nodes 2,3,4,5
 # firstNode = Node(2)
@@ -135,3 +157,8 @@ print("\nLevel order: ", end='')
 bfs(root) #1
           #2 3
           #5
+key = 6
+root = insert(root, key)
+
+print("Inorder traversal after insertion: ", end="")
+in_order(root)
