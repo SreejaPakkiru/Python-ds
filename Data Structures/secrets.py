@@ -1,2 +1,0 @@
-print("username")
-print("password")
