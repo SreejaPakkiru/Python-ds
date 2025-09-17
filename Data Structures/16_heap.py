@@ -117,3 +117,14 @@ def build_min_heap(arr):
 arr = [4, 10, 3, 5, 1]
 min_heap = build_min_heap(arr)
 print("Min-heap built:", min_heap)
+
+heapsortarr = [5,3,4,7,1]
+mini_heap = heapsortarr[:]
+heapq.heapify(heapsortarr)
+sorted_arr = [heapq.heappop(heapsortarr) for i in range(len(heapsortarr))]
+print("heapsort asc order: ", sorted_arr)
+
+max_heap = [-x for x in mini_heap]
+heapq.heapify(max_heap)
+sorted_desc = [-heapq.heappop(max_heap) for i in range(len(max_heap))]
+print("Heapsort desc: ", sorted_desc)
